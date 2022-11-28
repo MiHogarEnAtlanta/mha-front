@@ -19,6 +19,7 @@ export class ContactFormComponent implements OnInit {
       name:[null, [Validators.required]],
       email:[null, [Validators.required]],
       tel:[null, [Validators.required]],
+      message:[null, [Validators.required]]
     });
   }
   
@@ -33,7 +34,9 @@ export class ContactFormComponent implements OnInit {
       tel:tel,
       message:message
     }
+    console.log(name, this.contactForm.value.message);
     this.emailService.sendMessage(req).subscribe(data => {
+      
       console.log(data);
     })
   }
