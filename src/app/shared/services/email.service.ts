@@ -14,6 +14,6 @@ export class EmailService {
         'Content-Type' : 'application/json'
       })
     }
-    return this.http.post("http://localhost:3000/email", body, headers);
+    return this.http.post("https://mihogarenatlanta/email", body, headers);
   }
 }
