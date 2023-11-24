@@ -23,10 +23,10 @@ export class HomeComponent implements OnInit {
   public viewType: string = 'list';
   public viewCol: number = 25;
   public count: number = 10;
-  public sort: string;
+  public sort: string = 'Ordenar por defecto';
   public searchFields: any;
   public removedSearchField: string;
-  public pagination:Pagination = new Pagination(1, 12, null, 2, 0, 0); 
+  public pagination:Pagination = new Pagination(1, 6, null, 2, 0, 0); 
   public message:string;
   public featuredProperties: Property[];
   public locations: Location[]; 
@@ -40,7 +40,6 @@ export class HomeComponent implements OnInit {
     this.watcher = mediaObserver.asObservable()
     .pipe(filter((changes: MediaChange[]) => changes.length > 0), map((changes: MediaChange[]) => changes[0]))
     .subscribe((change: MediaChange) => {
-      // console.log(change)
       if(change.mqAlias == 'xs') {
         this.viewCol = 100;
       }
@@ -96,15 +95,13 @@ export class HomeComponent implements OnInit {
   }
 
   public async getProperties(sort, limit, offset){  
-    if(sort = 'Ordenar por defecto' || 'Sort by default'){
-      // if (this.fmls.offset == this.fmls.limit){
-        // this.fmls.limit = this.fmls.limit + 12
-      // }
+    if(sort == 'Ordenar por defecto' || sort ==  'Sort by default'){
       // this.fmls.offset = this.fmls.offset + 12
       let data = await this.fmls.getDataProperties(limit, offset)
       this.fmls.cleanData(data.bundle)
-    }else if(sort= 'Precio (Bajo a Alto)' || 'Price (Low to High)'){
-      this.fmls.limit = this.fmls.limit + 12
+    }else if(sort = 'Precio (Bajo a Alto)' || 'Price (Low to High)'){
+      console.log(sort);
+      // this.fmls.limit = this.fmls.limit + 12
       let data = await this.fmls.getAscend(limit)
       this.fmls.cleanData(data.bundle)
     }else if(sort = 'Precio (Alto a Bajo)' || 'Price (High to Low)'){

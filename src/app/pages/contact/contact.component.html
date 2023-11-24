@@ -1,43 +1,73 @@
-<app-header-image [backgroundImage]="'assets/images/others/image1.jpg'" 
-                  [bgImageAnimate]="false" 
-                  [contentOffsetToTop]="true"                
-                  [title]="'CONTACTO.CONTACTO_TITLE' | translate"
-                  [desc]="'CONTACTO.CONTACTO_DESC' | translate">
-</app-header-image>
+<app-header-video
+  [backgroundVideo]="'assets/Videos/atlanta15s.mp4'"
+  [contentOffsetToTop]="true"
+  [title]="'CONTACTO.CONTACTO_TITLE' | translate"
+  [desc]="'CONTACTO.CONTACTO_DESC' | translate"
+  [isHomePage]="false"
+  [fullscreen]="false"
+>
+  >
+</app-header-video>
 
 <div class="px-3">
-
-    <div class="theme-container">
-        <mat-card class="main-content-header mb-5">
-            
-            <div fxLayout="row wrap" fxLayoutAlign="space-around">
-                <div fxFlex="100" fxFlex.gt-xs="33.3">
-                    <div fxLayout="column" fxLayoutAlign="center center" class="text-center">
-                        <mat-icon color="primary" class="mat-icon-lg">home</mat-icon>
-                        <h3 class="primary-color py-1">{{ 'CONTACTO.ADDRESS' | translate}}</h3>
-                        <span><a href="http://maps.google.com/?q=6015 Atlantic Blvd Suite D, Norcross, GA 30071, Estados Unidos" target="_blank" style="color: black;">6015 Atlantic Blvd Suite D, Norcross, GA 30071, Estados Unidos</a></span>
-                    </div>
-                </div>
-                <div fxFlex="100" fxFlex.gt-xs="33.3" ngClass.xs="mt-2">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <mat-icon color="primary" class="mat-icon-lg">call</mat-icon>
-                        <h3 class="primary-color py-1">{{ 'CONTACTO.PHONE_NUMBERS' | translate}}</h3>
-                        <span><a href="tel:+1 (678) 744-8007" style="color: black;">+1 (678) 744-8007</a></span>
-                        <!-- <span>(212) 457-2309</span> -->
-                    </div>
-                </div>
-                <div fxFlex="100" fxFlex.gt-xs="33.3" ngClass.xs="mt-2">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <mat-icon color="primary" class="mat-icon-lg">mail_outline</mat-icon>
-                        <h3 class="primary-color py-1">{{ 'CONTACTO.EMAIL' | translate}}</h3>
-                        <span><a href="mailto:mihogarenatlanta@gmail.com" style="color: black;">mihogarenatlanta@gmail.com</a></span>
-                        <!-- <span>info@housekey.com</span> -->
-                    </div>
-                </div>
-                <!-- <div class="divider w-100 mt-3"></div>
+  <div class="theme-container">
+    <mat-card class="main-content-header mb-5">
+      <div fxLayout="row wrap" fxLayoutAlign="space-around">
+        <div fxFlex="100" fxFlex.gt-xs="33.3">
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            class="text-center"
+          >
+            <mat-icon color="primary" class="mat-icon-lg">home</mat-icon>
+            <h3 class="primary-color py-1">
+              {{ "CONTACTO.ADDRESS" | translate }}
+            </h3>
+            <span
+              ><a
+                href="http://maps.google.com/?q=6015 Atlantic Blvd Suite D, Norcross, GA 30071, Estados Unidos"
+                target="_blank"
+                style="color: black"
+                >6015 Atlantic Blvd Suite D, Norcross, GA 30071, Estados
+                Unidos</a
+              ></span
+            >
+          </div>
+        </div>
+        <div fxFlex="100" fxFlex.gt-xs="33.3" ngClass.xs="mt-2">
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <mat-icon color="primary" class="mat-icon-lg">call</mat-icon>
+            <h3 class="primary-color py-1">
+              {{ "CONTACTO.PHONE_NUMBERS" | translate }}
+            </h3>
+            <span
+              ><a href="tel:+1 (678) 744-8007" style="color: black"
+                >+1 (678) 744-8007</a
+              ></span
+            >
+            <!-- <span>(212) 457-2309</span> -->
+          </div>
+        </div>
+        <div fxFlex="100" fxFlex.gt-xs="33.3" ngClass.xs="mt-2">
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <mat-icon color="primary" class="mat-icon-lg"
+              >mail_outline</mat-icon
+            >
+            <h3 class="primary-color py-1">
+              {{ "CONTACTO.EMAIL" | translate }}
+            </h3>
+            <span
+              ><a href="mailto:mihogarenatlanta@gmail.com" style="color: black"
+                >mihogarenatlanta@gmail.com</a
+              ></span
+            >
+            <!-- <span>info@housekey.com</span> -->
+          </div>
+        </div>
+        <!-- <div class="divider w-100 mt-3"></div>
                 <h3 class="w-100 text-center py-3">CONTACT US</h3> -->
-                
-                <!-- <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)" fxLayout="row wrap">
+
+        <!-- <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)" fxLayout="row wrap">
                     <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Name</mat-label>
@@ -71,22 +101,39 @@
                         <button mat-raised-button color="primary" type="submit" class="uppercase">Submit</button>
                     </div> 
                 </form>  -->
-            
-            </div> 
+      </div>
 
-            <!-- <div class="container" gallerize>
+      <!-- <div class="container" gallerize>
                 <img *ngFor="let src of images" src='src\assets\images\fotosContact'>
               </div> -->
+      <div class="container">
+        <app-contact-form></app-contact-form>
+        <div class="rounded overflow-hidden shadow">
+          <youtube-player
+            videoId="gxygTPby0F0"
+            suggestedQuality="highres"
+            [height]="300"
+            [width]="520"
+            fxLayoutAlign="center"
+          ></youtube-player>
+        </div>
+      </div>
 
-            <app-contact-form></app-contact-form>
-            
-            <div class="mt-5 contact-map">
-                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="true" [fullscreenControl]="true">
-                    <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false" ></agm-marker>
-                </agm-map>
-            </div>
-
-        </mat-card>  
-    </div>
-
+      <div class="mt-5 contact-map">
+        <agm-map
+          [latitude]="lat"
+          [longitude]="lng"
+          [zoom]="zoom"
+          [mapTypeControl]="true"
+          [fullscreenControl]="true"
+        >
+          <agm-marker
+            [latitude]="lat"
+            [longitude]="lng"
+            [markerDraggable]="false"
+          ></agm-marker>
+        </agm-map>
+      </div>
+    </mat-card>
+  </div>
 </div>

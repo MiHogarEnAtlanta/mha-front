@@ -1,15 +1,53 @@
-.testimonials-carousel{    
-    .swiper-container{
-        padding-bottom: 30px;
+.testimonials-carousel {
+  .swiper-container {
+    padding-bottom: 30px;
+    height: auto;
+    .content {
+      max-width: 650px;
+      margin: auto;
+      height: auto;
+      img {
+        width: 100%;
         height: auto;
-        .content{
-            max-width: 650px;
-            margin: auto; 
-            height: auto;
-            img{
-                width: 100%;
-                height: auto;
-            }
-        }
+      }
     }
+  }
+}
+.right {
+  margin-right: 20px;
+}
+.left {
+  margin-left: 20px;
+}
+.text-box {
+  flex: 1;
+  min-width: 50%; /* Set a minimum width for the text container */
+}
+.order-1{
+  order: -1; /* Move the text container to the top on smaller screens */
+}
+.order1{
+  order: 1; /* Move the text container to the top on smaller screens */
+
+}
+.video-box, .img-box {
+  min-width: 300px;
+  margin-bottom: 16px;
+}
+.img-box img{
+    width: 300px;
+    &:hover{
+        transform: scale(1.1);
+        transition: all 0.3s ease;
+    }
+}
+
+.d-flex {
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }

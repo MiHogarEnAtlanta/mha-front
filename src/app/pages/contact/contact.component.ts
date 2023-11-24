@@ -22,6 +22,12 @@ export class ContactComponent implements OnInit {
       phone: ['', Validators.required],
       message: ['', Validators.required],
     });     
+    const tag = document.createElement('script');
+
+  	tag.src = "https://www.youtube.com/iframe_api";
+
+  	document.body.appendChild(tag);
+
   }
 
   public onContactFormSubmit(values:Object):void {

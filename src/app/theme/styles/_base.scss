@@ -26,6 +26,15 @@ body{
     font-size: 14px;
     line-height: 1.7;
 }
+.rounded{
+    border-radius: 8px;
+}
+.shadow{
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.overflow-hidden{
+    overflow: hidden;
+}
 p{
     margin-bottom: 16px;
 }
@@ -744,7 +753,9 @@ button.swipe-arrow{
     // }
     &.agents{
         &:before{ 
-            background-image: url('~assets/images/props/office-2/4-big.jpg');
+            background-image: url('~assets/images/fotosContact/portada_youtube.jpg');
+            background-attachment: fixed;
+            background-position: top left;
         }
     }
     &.default{
@@ -990,13 +1001,13 @@ button.swipe-arrow{
     .container-agents {
         display: flex;
         justify-content: center;
-        margin-left: -170px;
+        // margin-left: -170px;
         flex-wrap: wrap;
 
     }
     
     .container-agents-box {
-        width: 30%;
+        // width: 30%;
         display: flex;
         flex-direction: column;
     }
@@ -1011,12 +1022,10 @@ button.swipe-arrow{
 .container-agents {
     display: flex;
     justify-content: center;
-    margin-left: -200px;
     flex-wrap: wrap;
 }
 
 .container-agents-box {
-    width: 30%;
     display: flex;
 }
 
