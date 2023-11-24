@@ -75,7 +75,8 @@ export class CompareComponent implements OnInit {
   }
 
   public clear(){
-    this.appService.Data.compareList.length = localStorage.removeItem('compare');
+    this.appService.Data.compareList = [];
+    localStorage.removeItem('compare');
   }
 
   public remove(property:Property) {

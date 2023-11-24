@@ -626,6 +626,7 @@ footer{
         background-image: url('~assets/images/others/homepage.jpg');
         background-repeat: no-repeat;
         background-size: cover;
+        background-attachment: fixed;
         background-position: center;
     }   
     .content{
@@ -1018,6 +1019,27 @@ button.swipe-arrow{
         margin-top: 30px;
     }
 }
+@media screen and (max-width: 399px) {
+    .container-agents {
+        display: flex;
+        justify-content: center;
+        // margin-left: -170px;
+        flex-wrap: wrap;
+
+    }
+    
+    .container-agents-box {
+        // width: 30%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container-agents-box .mat-card{
+        align-items: center;
+        width: 250px;
+        margin-top: 30px;
+    }
+}
 
 .container-agents {
     display: flex;
@@ -1027,6 +1049,7 @@ button.swipe-arrow{
 
 .container-agents-box {
     display: flex;
+    align-items: center;
 }
 
 .container-agents-box .mat-card{

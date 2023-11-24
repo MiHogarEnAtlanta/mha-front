@@ -24,7 +24,7 @@
           <div *ngFor="let property of appService.Data.compareList" class="swiper-slide">
 
             <mat-card class="compare-item">                 
-                <img mat-card-image [src]="property.gallery[0].medium" alt="image"> 
+                <img mat-card-image [src]="property.gallery[0]" alt="image"> 
                 <button mat-icon-button class="remove" (click)="remove(property)">
                   <mat-icon color="warn" class="mat-icon-lg">highlight_off</mat-icon>
                 </button>              
