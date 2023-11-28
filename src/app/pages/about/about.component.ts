@@ -9,6 +9,7 @@ import { AppService } from 'src/app/app.service';
 })
 export class AboutComponent implements OnInit {
   public imageNosotros;
+  public achievements;
   public config: SwiperConfigInterface = { };
   private pagination: SwiperPaginationInterface = {
     el: '.swiper-pagination',
@@ -18,6 +19,7 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     this.imageNosotros = this.appService.getImagesNosotros();
+    this.achievements = this.appService.getAchievements();
   }
 
   ngAfterViewInit(){

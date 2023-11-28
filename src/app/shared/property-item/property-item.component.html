@@ -3,7 +3,7 @@
     <div fxFlex="100" fxShrink="3" [fxFlex.gt-sm]="(viewType=='list') ? 40 : 100" [fxFlex.sm]="(viewType=='list') ? 50 : 100" class="thumbnail-section">
 
         <div fxLayout="row wrap" class="property-status">
-            <span *ngFor="let status of property.propertyStatus" [style.background-color]="getStatusBgColor(status)">{{status}}</span>
+            <span [style.background-color]="getStatusBgColor(property.propertyStatus)">{{property.propertyStatus}}</span>
         </div>
        
         <div *ngIf="property.gallery.length == 1" class="mat-card-image w-100 m-0">

@@ -54,6 +54,7 @@
       "ABOUT_TITLE": "Nosotros",
       "ABOUT_DESC": "Ayudamos a encontrar tu casa",
       "OUR_HISTORY": "Nuestra Historia",
+      "OUR_CASES": "Nuestros casos de Exito",
       "HISTORY": "El concepto de “trabajo duro” es ampliamente conocido por Carmela Moreno, una educadora de profesión que decidió emigrar desde su bella Perú para ofrecer mejores oportunidades de crecimiento a sus hijas. Su país le brindaba estatus profesional, liderazgo y cierta estabilidad, como directora de Escuela, pero no así oportunidades de desarrollo y progreso económico. Así que empacó sus sueños, conocimientos y pertenencias más elementales, tomó un avión y llegó a este país.",
       "HISTORY_2": "“En el año 2004 arribó a Miami. Fue difícil, al punto de querer regresarme porque tuve que comenzar como obrera, fue muy estresante, pero lo hice, no me quedaba otra alternativa. Vinimos con muchas esperanzas, pero aquí al principio la vida es muy dura. El idioma, la cultura, no tener carro, tener que caminar a la parada de autobús, dormir en la calle de madrugada sobre cartones para que nos tomaran como primeros trabajadores”.",
       "HISTORY_3": "Cuando legalice mi estatus migratorio estaba buscando que hacer algo mejor con mi Vida, vi un reportaje que me estremeció porque contaba historias de estafa a mi comunidad relacionada con la compra de viviendas, ese día decidí lo que quería hacer, pensé yo  puedo educar a todos ellos, así fue que saqué mi licencia de Real Estate Agente.",
@@ -76,7 +77,8 @@
       "MISSION": "Nuestra Misión, es servir a mi comunidad haciendo sus sueños realidad siendo propietarios.",
       "OUR_VISION": "Nuestra Visión",
       "VISION": "Liderar la venta y compra de casas en Georgia con Honestidad.",
-      "BOOK": "Puedes saber mas acerca de mi historia de exito comprando mi libro aqui: "
+      "BOOK": "Puedes saber mas acerca de mi historia de exito comprando mi libro aqui: ",
+      "BOOK_LINK": "De limpiadora a vendedora exitosa de casas."
     },
     "CONTACTO": {
       "CONTACTO_TITLE": "Contáctanos",

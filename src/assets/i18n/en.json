@@ -54,6 +54,7 @@
     "ABOUT_TITLE": "About Us",
     "ABOUT_DESC": "We help you find your home",
     "OUR_HISTORY": "Our History",
+    "OUR_CASES": "Our Cases",
     "HISTORY": "The concept of ''hard work'' is widely known to Carmela Moreno, an educator by profession who decided to emigrate from her beautiful country Peru to provide better opportunities for her daughters to grow. Her country offered her professional status, leadership and some stability as a school principal, but not opportunities for development and economic advancement. So she packed her dream, knowledge and most basic belongings, took a plane and arrives in this country.",
     "HISTORY_2": "“In 2004 she arrived in Miami. It was difficult, to the point of wanting to return because I had to start as a worker, it was very stressful, but I did it, I had no other alternative. We came with high hopes, but here at the beggining life is very hard. The language, the culture, not having a car, having to walk to the bus stop, sleeping in the street at dawn on cardboard so that they would take us as the first workers”.",
     "HISTORY_3": "When I legalized my immigration status I was looking for something better to do with my life, I saw a news report that shock me because it told stories of scams in my community related to home buying, that day I decided what I wanted to do, I thought I can educate all of them, so I got my Real Estate Agent license.",
@@ -76,7 +77,8 @@
     "MISSION": "Our Mission is to serve my community by making their dreams come true as owners.",
     "OUR_VISION": "Our Vision",
     "VISION": "Leading the sale and purchase of houses in Georgia with Honesty.",
-    "BOOK": "You can see more of my success story buying my book here: "
+    "BOOK": "You can see more of my success story buying my book here: ",
+    "BOOK_LINK": "From House Cleaner to Successful Real State Agent"
   },
   "CONTACTO": {
     "CONTACTO_TITLE": "Contact Us",

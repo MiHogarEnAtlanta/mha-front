@@ -6,14 +6,14 @@
 >
 </app-header-video>
 
-<div class="px-3">
+<div class="px-4 mb-2">
   <div class="theme-container">
     <mat-card class="main-content-header">
       <div class="section pt-2">
         <div class="px-3">
           <div class="theme-container">
             <h1 class="section-title">{{ "ABOUT.OUR_HISTORY" | translate }}</h1>
-            <div class="container d-flex">
+            <div class="container d-flex mb-3 mt-3">
               <div class="text-box right order-1">
                 <p class="px-3" style="text-align: justify">
                   {{ "ABOUT.HISTORY" | translate }}
@@ -27,8 +27,8 @@
                 <youtube-player
                   videoId="r5UQFAGyQuY"
                   suggestedQuality="highres"
-                  [height]="300"
-                  [width]="450"
+                  [height]="280"
+                  [width]="400"
                   fxLayoutAlign="center"
                 ></youtube-player>
               </div>
@@ -49,7 +49,86 @@
             <p class="px-3" style="text-align: justify">
               {{ "ABOUT.HISTORY_6" | translate }}
             </p>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div class="banner-bg">
+  <img src="assets/images/fotosContact/portada_fb.jpg" alt="" />
+</div>
+<div class="px-4 mb-4">
+  <div class="theme-container justify-content-between" fxLayout="row wrap">
+    <mat-card
+      class="main-content-header mt-3"
+      fxFlex="100"
+      fxFlex.gt-xs="48"
+      fxFlex.gt-sm="48"
+    >
+      <div class="section pt-2">
+        <div class="px-3">
+          <div class="theme-container">
+            <div class="section testimonials">
+              <div class="px-3">
+                <div class="theme-container">
+                  <div fxLayout="row wrap">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                      <mat-icon class="mat-icon-xlg" color="primary"
+                        >business</mat-icon
+                      >
+                      <h2 class="capitalize fw-600 mx-2">
+                        {{ "ABOUT.OUR_MISSION" | translate }}
+                      </h2>
+                    </div>
+                    <p class="mt-2">{{ "ABOUT.MISSION" | translate }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
 
+    <mat-card
+      class="main-content-header mt-3"
+      fxFlex="100"
+      fxFlex.gt-xs="48"
+      fxFlex.gt-sm="48"
+    >
+      <div class="section pt-2">
+        <div class="px-3">
+          <div class="theme-container">
+            <div class="section testimonials">
+              <div class="px-3">
+                <div class="theme-container">
+                  <div fxLayout="row wrap">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                      <mat-icon class="mat-icon-xlg" color="primary"
+                        >list_alt</mat-icon
+                      >
+                      <h2 class="capitalize fw-600 mx-2">
+                        {{ "ABOUT.OUR_VISION" | translate }}
+                      </h2>
+                    </div>
+                    <p class="mt-2">{{ "ABOUT.VISION" | translate }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div class="px-4 mb-3">
+  <div class="theme-container">
+    <mat-card class="main-content-header mt-3">
+      <div class="section pt-2">
+        <div class="px-3">
+          <div class="theme-container mt-2">
             <p class="px-3" style="text-align: justify">
               {{ "ABOUT.HISTORY_7" | translate }}
             </p>
@@ -65,8 +144,13 @@
             <br />
 
             <div class="container d-flex">
-              <div class="img-box">
-                <img src="assets/images/fotosContact/FLYER.png" class="rounded" alt="" srcset="">
+              <div class="img-box p-3">
+                <img
+                  src="assets/images/fotosContact/FLYER.png"
+                  class="rounded"
+                  alt=""
+                  srcset=""
+                />
               </div>
               <div class="text-box left">
                 <p class="px-3" style="text-align: justify">
@@ -108,35 +192,48 @@
               }}<a
                 href="https://www.amazon.com/limpiadora-vendedora-exitosa-casas-inspiraci%C3%B3n/dp/B09DMRFG24"
                 target="_blank"
-                >link</a
+                class="primary-text"
+                >{{ "ABOUT.BOOK_LINK" | translate }}</a
               >
             </p>
-
-            <div fxLayout="row wrap">
-              <div fxFlex="100" fxFlex.gt-sm="50" class="p-3">
-                <div fxLayout="row" fxLayoutAlign="start center">
-                  <mat-icon class="mat-icon-xlg" color="primary"
-                    >business</mat-icon
-                  >
-                  <h2 class="capitalize fw-600 mx-2">
-                    {{ "ABOUT.OUR_MISSION" | translate }}
-                  </h2>
+          </div>
+          <div class="section achievements">
+            <div class="px-3">
+              <div class="theme-container">
+                <div class="testimonials-carousel">
+                  <div class="swiper-container" [swiper]="config">
+                    <div class="swiper-wrapper h-100">
+                      <div
+                        *ngFor="let achievement of achievements"
+                        class="swiper-slide"
+                      >
+                        <div class="content text-center">
+                          <img
+                            [attr.data-src]="achievement.image"
+                            class="swiper-lazy imgs-height"
+                          />
+                          <div class="swiper-lazy-preloader"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                  </div>
                 </div>
-                <p class="mt-2">{{ "ABOUT.MISSION" | translate }}</p>
-              </div>
-
-              <div fxFlex="100" fxFlex.gt-sm="50" class="p-3">
-                <div fxLayout="row" fxLayoutAlign="start center">
-                  <mat-icon class="mat-icon-xlg" color="primary"
-                    >list_alt</mat-icon
-                  >
-                  <h2 class="capitalize fw-600 mx-2">
-                    {{ "ABOUT.OUR_VISION" | translate }}
-                  </h2>
-                </div>
-                <p class="mt-2">{{ "ABOUT.VISION" | translate }}</p>
               </div>
             </div>
+          </div>
+        </div></div
+    ></mat-card>
+  </div>
+</div>
+
+<div class="px-4 mb-3">
+  <div class="theme-container">
+    <!-- <mat-card class="main-content-header mt-3"> -->
+      <div class="section pt-2">
+        <div class="px-3">
+          <div class="theme-container">
+            <h1 class="section-title">{{ "ABOUT.OUR_CASES" | translate }}</h1>
             <div class="section testimonials">
               <div class="px-3">
                 <div class="theme-container">
@@ -165,10 +262,9 @@
           </div>
         </div>
       </div>
-    </mat-card>
+    <!-- </mat-card> -->
   </div>
 </div>
-
 <!-- <app-mission></app-mission> -->
 
 <!-- <app-our-services></app-our-services> -->

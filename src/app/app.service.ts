@@ -1376,6 +1376,26 @@ export class AppService {
   public getImagesNosotros() {
     return [
       {
+        image: 'assets/images/fotosContact/closing_1.png'
+      },
+      {
+        image: 'assets/images/fotosContact/closing_2.png'
+      },
+      {
+        image: 'assets/images/fotosContact/closing_3.png'
+      },
+      // {
+      //   image: "assets/images/fotosContact/image3.jpg",
+      // },
+      // {
+      //   image: "assets/images/fotosContact/image6.jpg",
+      // },
+    ];
+  }
+
+  public getAchievements(){
+    return [
+      {
         image: "assets/images/fotosContact/second_book.jpg",
       },
       {
@@ -1385,12 +1405,24 @@ export class AppService {
         image: "assets/images/fotosContact/BookEnglish.png",
       },
       {
-        image: "assets/images/fotosContact/image3.jpg",
+        image: "assets/images/fotosContact/DIPLOMA.png",
       },
       {
-        image: "assets/images/fotosContact/image6.jpg",
+        image: "assets/images/fotosContact/DIPLOMA_2.png",
       },
-    ];
+      {
+        image: "assets/images/fotosContact/portada_1.jpg",
+      },
+      {
+        image: "assets/images/fotosContact/portada_2.jpg",
+      },
+      {
+        image: "assets/images/fotosContact/portada_3.jpg",
+      },
+      {
+        image: "assets/images/fotosContact/portada_4.jpg",
+      }
+    ]
   }
 
   public getAgents() {
