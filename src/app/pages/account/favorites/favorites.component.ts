@@ -20,6 +20,7 @@ export class FavoritesComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.appService.Data.favorites);
+    console.log(this.appService.Data.favorites)
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

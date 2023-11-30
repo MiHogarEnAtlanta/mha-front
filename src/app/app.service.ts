@@ -158,7 +158,7 @@ export class AppService {
         JSON.stringify(this.Data.favorites)
       );
       this.snackBar.open(
-        'La propiedad "' + property.title + '" ha sido agregada a favoritos.',
+        'La propiedad ha sido agregada a favoritos.',
         "×",
         {
           verticalPosition: "top",
