@@ -56,7 +56,8 @@ export class FmlsService {
   }
 
   cleanData(data: any) {
-    this.uniqueData = [];
+    // this.uniqueData = [];
+    this.arrayCleanData = []
     data.forEach((element) => {
       this.dataArray["id"] = element["ListingId"];
       this.dataArray["title"] = element["BuildingName"];
@@ -266,7 +267,7 @@ export class FmlsService {
       .get<any>(
         "https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=" +
           limit +
-          "&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=eb139e76bad135fab257119419bd4c10&sortBy=FMLS_CurrentPrice&order=desc"
+          "&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=eb139e76bad135fab257119419bd4c10&sortBy=ListPrice&order=desc"
       )
       .toPromise();
   }
@@ -278,7 +279,7 @@ export class FmlsService {
           limit2 +
           "&offset=" +
           offset2 +
-          "&sortBy[0]=BridgeModificationTimestamp&access_token=eb139e76bad135fab257119419bd4c10&sortBy=FMLS_CurrentPrice&order=desc"
+          "&sortBy[0]=BridgeModificationTimestamp&access_token=eb139e76bad135fab257119419bd4c10&sortBy=ListPrice&order=desc"
       )
       .toPromise();
   }

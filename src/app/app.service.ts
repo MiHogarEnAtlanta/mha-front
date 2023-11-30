@@ -948,9 +948,9 @@ export class AppService {
 
     // console.log('data:',data)
 
-    for (let i = 0; i < data.length; i = i + perPage) {
-      data = [...new Set(data.slice(i, data.length))];
-    }
+    // for (let i = 0; i < data.length; i = i + perPage) {
+    //   data = [...new Set(data.slice(i, data.length))];
+    // }
 
     // console.log('data for:',data)
     //for show more properties mock data
@@ -1199,13 +1199,11 @@ export class AppService {
       }
     }
 
-    console.log(data);
-
-    // if (data.length >= 20){
-    // for(let i = 0; i < data.length; i = i + perPage){
-    //   data = [...new Set(data.slice(i, data.length))]
-    // }
-    // }
+    if (data.length >= 20) {
+      for (let i = 0; i < data.length; i = i + perPage) {
+        data = [...new Set(data.slice(i, data.length))];
+      }
+    }
 
     //for show more properties mock data
     // for (var index = 0; index < 2; index++) {
@@ -1376,13 +1374,13 @@ export class AppService {
   public getImagesNosotros() {
     return [
       {
-        image: 'assets/images/fotosContact/closing_1.png'
+        image: "assets/images/fotosContact/closing_1.png",
       },
       {
-        image: 'assets/images/fotosContact/closing_2.png'
+        image: "assets/images/fotosContact/closing_2.png",
       },
       {
-        image: 'assets/images/fotosContact/closing_3.png'
+        image: "assets/images/fotosContact/closing_3.png",
       },
       // {
       //   image: "assets/images/fotosContact/image3.jpg",
@@ -1393,7 +1391,7 @@ export class AppService {
     ];
   }
 
-  public getAchievements(){
+  public getAchievements() {
     return [
       {
         image: "assets/images/fotosContact/second_book.jpg",
@@ -1421,8 +1419,8 @@ export class AppService {
       },
       {
         image: "assets/images/fotosContact/portada_4.jpg",
-      }
-    ]
+      },
+    ];
   }
 
   public getAgents() {

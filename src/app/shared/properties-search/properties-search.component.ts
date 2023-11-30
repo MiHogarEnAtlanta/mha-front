@@ -135,6 +135,7 @@ export class PropertiesSearchComponent implements OnInit {
       },       
       features: this.features    
     }); 
+
   }
 
   public search(){

@@ -99,23 +99,18 @@ export class HomeComponent implements OnInit {
   }
 
   public async getProperties(sort, limit, offset) {
-    if (this.searchFields) {
-      console.log("consola");
-      if (this.searchFields.city) {
+    if (this.searchFields && this.searchFields.city) {
         let city = this.searchFields.city.name.toLowerCase();
         let data = await this.fmls.getPropertiesByCity(city, limit, offset);
         this.fmls.cleanData(data.bundle);
-      }
     } else if (sort == "Ordenar por defecto" || sort == "Sort by default") {
       // this.fmls.offset = this.fmls.offset + 12
       let data = await this.fmls.getDataProperties(limit, offset);
       this.fmls.cleanData(data.bundle);
-      console.log(data);
     } else if (
       sort == "Precio (Bajo a Alto)" ||
       sort == "Price (Low to High)"
     ) {
-      console.log(sort);
       // this.fmls.limit = this.fmls.limit + 12
       let data = await this.fmls.getAscend(limit);
       this.fmls.cleanData(data.bundle);
@@ -135,15 +130,13 @@ export class HomeComponent implements OnInit {
       let data = await this.fmls.getOld(limit);
       this.fmls.cleanData(data.bundle);
     }
-    //console.log('get properties by : ', this.searchFields);
-    // this.fmls.getDataProperties().subscribe(data => {
-    //   this.fmls.cleanData(data.bundle)
-    // if(this.properties && this.properties.length > 0){
-    //   this.settings.loadMore.page++;
-    //   this.pagination.page = this.settings.loadMore.page;
-    // }
-    let result = this.filterData(this.fmls.uniqueData);
-    // console.log('result.data:', result.data)
+    let data;
+    if (this.properties && this.properties.length > 0) {
+      data = this.fmls.uniqueData.filter((property) => !this.properties.find(existingProperty => existingProperty.id === property.id))
+    } else {
+      data = this.fmls.uniqueData
+    }
+    let result = this.filterData(data);
     if (result.data.length == 0) {
       this.properties.length = 0;
       this.pagination = new Pagination(1, this.count, null, 2, 0, 0);
@@ -181,8 +174,7 @@ export class HomeComponent implements OnInit {
     this.settings.loadMore.complete = false;
     this.settings.loadMore.start = false;
     this.settings.loadMore.page = 1;
-    console.log(this.count)
-    
+
     this.pagination = new Pagination(
       1,
       this.count,
@@ -204,7 +196,8 @@ export class HomeComponent implements OnInit {
   }
 
   public searchClicked() {
-    this.properties.length = 0;
+    // this.properties.length = 0;
+    this.properties = []
     this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);
   }
 
@@ -241,6 +234,7 @@ export class HomeComponent implements OnInit {
   }
 
   public changeSorting(sort) {
+    this.properties = []
     this.sort = sort;
     this.resetLoadMore();
     this.properties.length = 0;
