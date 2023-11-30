@@ -24,17 +24,20 @@ export class CompareComponent implements OnInit {
   ngOnInit() { 
     this.config = {
       observer: true,
-      slidesPerView: 'auto',
+      slidesPerView: 3,
       spaceBetween: 16,       
       keyboard: false,
-      navigation: false,
+      navigation: true,
       pagination: false,
-      simulateTouch: false,
+      simulateTouch: true,
       grabCursor: true,        
       loop: false,
       preloadImages: true,
       lazy: false,    
       breakpoints: {
+        150:{
+          slidesPerView: 1
+        },
         600: {
           slidesPerView: 1
         },

@@ -15,7 +15,7 @@ export class AccountComponent implements OnInit {
   public sidenavOpen: boolean = true;
   public links = [
     // { name: 'Profile', href: 'profile', icon: 'person' },
-    { name: "My Properties", href: "my-properties", icon: "view_list" },
+    // { name: "My Properties", href: "my-properties", icon: "view_list" },
     { name: "Favorites", href: "favorites", icon: "favorite" },
     // { name: 'Submit Property', href: '/submit-property', icon: 'add_circle' },
     // { name: 'Logout', href: '/login', icon: 'power_settings_new' },
