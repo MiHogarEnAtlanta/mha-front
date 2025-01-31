@@ -157,15 +157,11 @@ export class AppService {
         "favorites",
         JSON.stringify(this.Data.favorites)
       );
-      this.snackBar.open(
-        'La propiedad ha sido agregada a favoritos.',
-        "×",
-        {
-          verticalPosition: "top",
-          duration: 3000,
-          direction: direction,
-        }
-      );
+      this.snackBar.open("La propiedad ha sido agregada a favoritos.", "×", {
+        verticalPosition: "top",
+        duration: 3000,
+        direction: direction,
+      });
     }
   }
 
@@ -738,16 +734,17 @@ export class AppService {
       if (params.price) {
         if (this.appSettings.settings.currency == "USD") {
           if (params.price.from) {
+            const from = parseInt(params.price.from + "000");
             data = data.filter((property) => {
               if (
                 property.priceDollar.sale &&
-                property.priceDollar.sale >= params.price.from
+                property.priceDollar.sale >= from
               ) {
                 return true;
               }
               if (
                 property.priceDollar.rent &&
-                property.priceDollar.rent >= params.price.from
+                property.priceDollar.rent >= from
               ) {
                 return true;
               }
@@ -755,16 +752,17 @@ export class AppService {
             });
           }
           if (params.price.to) {
+            const priceTo = parseInt(params.price.to + '000')
             data = data.filter((property) => {
               if (
                 property.priceDollar.sale &&
-                property.priceDollar.sale <= params.price.to
+                property.priceDollar.sale <= priceTo
               ) {
                 return true;
               }
               if (
                 property.priceDollar.rent &&
-                property.priceDollar.rent <= params.price.to
+                property.priceDollar.rent <= priceTo
               ) {
                 return true;
               }
@@ -991,16 +989,17 @@ export class AppService {
       if (params.price) {
         if (this.appSettings.settings.currency == "USD") {
           if (params.price.from) {
+            const from = parseInt(params.price.from + "000");
             data = data.filter((property) => {
               if (
                 property.priceDollar.sale &&
-                property.priceDollar.sale >= params.price.from
+                property.priceDollar.sale >= from
               ) {
                 return true;
               }
               if (
                 property.priceDollar.rent &&
-                property.priceDollar.rent >= params.price.from
+                property.priceDollar.rent >= from
               ) {
                 return true;
               }
@@ -1008,16 +1007,17 @@ export class AppService {
             });
           }
           if (params.price.to) {
+            const priceTo = parseInt(params.price.to + '000')
             data = data.filter((property) => {
               if (
                 property.priceDollar.sale &&
-                property.priceDollar.sale <= params.price.to
+                property.priceDollar.sale <= priceTo
               ) {
                 return true;
               }
               if (
                 property.priceDollar.rent &&
-                property.priceDollar.rent <= params.price.to
+                property.priceDollar.rent <= priceTo
               ) {
                 return true;
               }

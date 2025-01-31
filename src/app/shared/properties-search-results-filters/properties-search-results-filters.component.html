@@ -8,11 +8,11 @@
         <mat-icon color="warn" matChipRemove (click)="remove('propertyStatus')">cancelar</mat-icon>
     </mat-chip>
     <mat-chip *ngIf="searchFields?.price.from">
-        Price > {{searchFields?.price.from}}
+        Price > {{searchFields?.price.from}}K
         <mat-icon color="warn" matChipRemove (click)="remove('price.from')">cancelar</mat-icon>
     </mat-chip>
     <mat-chip *ngIf="searchFields?.price.to">
-        Price < {{searchFields?.price.to}}
+        Price < {{searchFields?.price.to}}K
         <mat-icon color="warn" matChipRemove (click)="remove('price.to')">cancelar</mat-icon>
     </mat-chip>
     <mat-chip *ngIf="searchFields?.city">

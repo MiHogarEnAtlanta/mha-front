@@ -149,7 +149,7 @@
     "SCHEDULE": "Mon - Fri",
     "LOCAT": "Our Location",
     "FOLLOW": "For more information follow us in ",
-    "I-NIMBLEBRAND": "Powered by <a href=\"https://i-nimble.com/\" style=\"font-weight: bold;\" class=\"secondary-color\" target=\"_blank\">Inimble, LLC.</a> Please contact us at +1 (470) 868 1379 or info@i-nimble.com for any inquiries regarding this website."
+    "I-NIMBLEBRAND": "Powered by <span style=\"font-weight: bold;\" class=\"secondary-color\" target=\"_blank\">Mi Hogar En Atlanta.</span>"
   },
   "SORT": {
     "DEFAULT": "Sort by default",
