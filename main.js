@@ -412,8 +412,8 @@ AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
             _angular_router__WEBPACK_IMPORTED_MODULE_4__.RouterModule.forRoot(routes, {
                 preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_4__.PreloadAllModules,
                 relativeLinkResolution: 'legacy',
-                initialNavigation: 'enabled', // for one load page, without reload
-                // useHash: true
+                initialNavigation: 'enabled',
+                useHash: true
             })
         ],
         exports: [
