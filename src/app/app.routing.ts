@@ -36,7 +36,7 @@ export const routes: Routes = [
             preloadingStrategy: PreloadAllModules, // <- comment this line for activate lazy load
             relativeLinkResolution: 'legacy',
             initialNavigation: 'enabled', // for one load page, without reload
-            useHash: true
+            // useHash: true
         })
     ],
     exports: [
