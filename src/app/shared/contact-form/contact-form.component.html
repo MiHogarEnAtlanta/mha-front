@@ -1,39 +1,97 @@
 <section class="">
-    <div class="container">
-        <form [formGroup]="contactForm" class="" id="contact">
-            <h1 class="">Contact Us</h1>
-            <h4>Leave us your information so We can contact you and find together your new home</h4>
-            
-            <div class="">
-                <label for="name" class="">Name</label>
-                <input matInput #name formControlName="name" type="name" id="name" name="name" class="" placeholder="Your name" required/>
-            </div>
-            
-            <div class="">
-                <label for="email" class="">Email</label>
-                <input matInput #email formControlName="email" type="email" id="email" name="email" class="" placeholder="Your Email Address" required/>
-            </div>
-            
-            <div class="">
-                <label for="tel" class="">Phone</label>
-                <input matInput #tel formControlName="tel" type="tel" id="tel" name="tel" class="" placeholder="Your Phone Number" required/>
-            </div>
-            
-            <div class="">
-                <label for="message" class="">Message</label>
-                <textarea matInput #message formControlName="message" id="message" name="message" class="" placeholder="Type your message here...."></textarea>
-            </div>
-            
-            <!-- AQUI EL CODIGO ACTUALIZADO DE LA CASILLA DE VERIFICACIÓN -->
-            <div class="privacy-checkbox">
-                <label>
-                    <input type="checkbox" name="agree" required>
-                    By checking this box, I consent to receive conversational SMS from Mi Hogar en Atlanta, reply STOP to opt-out; reply HELP for support; Message and data rates may apply; Messaging frequency may vary. Visit <a href="[LINK_TO_PRIVACY_POLICY]" target="_blank">here</a> to see our privacy policy and [Terms URL] for our Terms of Service.
-                </label>
-            </div>
-            
-            <button mat-raised-button type="submit" class="" (click)="sendEmail()">Send</button>
-        </form>
-    </div>
-</section>
+  <div class="container">
+    <form [formGroup]="contactForm" class="" id="contact">
+      <h1 class="">Contact Us</h1>
+      <h4>
+        Leave us your information so We can contact you and find together your
+        new home
+      </h4>
 
+      <div class="">
+        <label for="name" class="">Name</label>
+        <input
+          matInput
+          #name
+          formControlName="name"
+          type="name"
+          id="name"
+          name="name"
+          class=""
+          placeholder="Your name"
+          required
+        />
+      </div>
+
+      <div class="">
+        <label for="email" class="">Email</label>
+        <input
+          matInput
+          #email
+          formControlName="email"
+          type="email"
+          id="email"
+          name="email"
+          class=""
+          placeholder="Your Email Address"
+          required
+        />
+      </div>
+
+      <div class="">
+        <label for="tel" class="">Phone</label>
+        <input
+          matInput
+          #tel
+          formControlName="tel"
+          type="tel"
+          id="tel"
+          name="tel"
+          class=""
+          placeholder="Your Phone Number"
+          required
+        />
+      </div>
+
+      <div class="">
+        <label for="message" class="">Message</label>
+        <textarea
+          matInput
+          #message
+          formControlName="message"
+          id="message"
+          name="message"
+          class=""
+          placeholder="Type your message here...."
+        ></textarea>
+      </div>
+
+      <!-- AQUI EL CODIGO ACTUALIZADO DE LA CASILLA DE VERIFICACIÓN -->
+      <div class="privacy-checkbox">
+        <label>
+          <input type="checkbox" name="agree" required />
+          <span class="text-muted small-text ml-2"
+            >By checking this box, I consent to receive conversational SMS from
+            Mi Hogar en Atlanta, reply STOP to opt-out; reply HELP for support;
+            Message and data rates may apply; Messaging frequency may vary.
+            Visit
+            <a class="primary-text" href="privacy-policy" target="_blank"
+              >here</a
+            >
+            to see our privacy policy and
+            <a
+              class="primary-text"
+              href="terms-conditions"
+              target="_blank"
+              >here</a
+            >
+            for our Terms of Service.</span
+          >
+        </label>
+      </div>
+
+      <button mat-raised-button type="submit" class="" (click)="sendEmail()">
+        Send
+      </button>
+    </form>
+  </div>
+</section>

@@ -18,7 +18,7 @@
 }
 
 #contact {
-  background: #F9F9F9;
+  background: #f9f9f9;
   padding: 25px;
   border-radius: 8px;
   margin: 50px 0;
@@ -55,7 +55,7 @@ fieldset {
   width: 96%;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background: #FFF;
+  background: #fff;
   margin: 0 0 5px;
   padding: 2%;
 }
@@ -82,14 +82,14 @@ fieldset {
   width: 100%;
   border: none;
   background: #008080;
-  color: #FFF;
+  color: #fff;
   margin: 0 0 5px;
   padding: 10px;
   font-size: 15px;
 }
 
 #contact button[type="submit"]:hover {
-  background: #43A047;
+  background: #43a047;
   -webkit-transition: background 0.3s ease-in-out;
   -moz-transition: background 0.3s ease-in-out;
   transition: background-color 0.3s ease-in-out;
@@ -101,6 +101,10 @@ fieldset {
 
 .copyright {
   text-align: center;
+}
+
+.small-text {
+  font-size: 12px;
 }
 
 #contact input:focus,
