@@ -4470,7 +4470,7 @@ let EmailService = class EmailService {
                 'Content-Type': 'application/json'
             })
         };
-        return this.http.post("https://mihogarenatlanta.com/email", body, headers);
+        return this.http.post("https://mha-nodemailer.onrender.com/email", body, headers);
     }
 };
 EmailService.ctorParameters = () => [
