@@ -2564,24 +2564,25 @@ let ContactFormComponent = class ContactFormComponent {
             name: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required]],
             email: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required]],
             tel: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required]],
-            message: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required]]
+            message: [null],
         });
     }
     sendEmail() {
-        let name = this.contactForm.value.name;
-        let email = this.contactForm.value.email;
-        let tel = this.contactForm.value.tel;
-        let message = this.contactForm.value.message;
-        let req = {
-            name: name,
-            email: email,
-            tel: tel,
-            message: message
-        };
-        console.log(name, this.contactForm.value.message);
-        this.emailService.sendMessage(req).subscribe(data => {
-            console.log(data);
-        });
+        if (this.contactForm.valid) {
+            let name = this.contactForm.value.name;
+            let email = this.contactForm.value.email;
+            let tel = this.contactForm.value.tel;
+            let message = this.contactForm.value.message;
+            let req = {
+                name: name,
+                email: email,
+                tel: tel,
+                message: message,
+            };
+            this.emailService.sendMessage(req).subscribe((data) => {
+                // console.log(data);
+            });
+        }
     }
 };
 ContactFormComponent.ctorParameters = () => [
@@ -2590,7 +2591,7 @@ ContactFormComponent.ctorParameters = () => [
 ];
 ContactFormComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
-        selector: 'app-contact-form',
+        selector: "app-contact-form",
         template: _raw_loader_contact_form_component_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_contact_form_component_scss__WEBPACK_IMPORTED_MODULE_1__.default]
     })
