@@ -1441,7 +1441,7 @@ export class AppService {
         },
         ratingsCount: 6,
         ratingsValue: 480,
-        image: "assets/images/agents/a-1-min.jpg",
+        image: "assets/images/agents/CARMELA_HEADSHOT.jpeg",
       },
     ];
   }

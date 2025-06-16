@@ -158,29 +158,8 @@
                 </p>
 
                 <ul style="margin-left: 50px; margin-right: 50px">
-                  <li class="px-3" style="text-align: justify">
-                    {{ "ABOUT.HISTORY_11" | translate }}
-                  </li>
-                  <li class="px-3" style="text-align: justify">
-                    {{ "ABOUT.HISTORY_12" | translate }}
-                  </li>
-                  <li class="px-3" style="text-align: justify">
-                    {{ "ABOUT.HISTORY_13" | translate }}
-                  </li>
-                  <li class="px-3" style="text-align: justify">
-                    {{ "ABOUT.HISTORY_14" | translate }}
-                  </li>
-                  <li class="px-3" style="text-align: justify">
-                    {{ "ABOUT.HISTORY_15" | translate }}
-                  </li>
-                  <li class="px-3" style="text-align: justify">
-                    {{ "ABOUT.HISTORY_16" | translate }}
-                  </li>
-                  <li class="px-3" style="text-align: justify">
-                    {{ "ABOUT.HISTORY_17" | translate }}
-                  </li>
-                  <li class="px-3" style="text-align: justify">
-                    {{ "ABOUT.HISTORY_18" | translate }}
+                  <li class="px-3" style="text-align: justify" *ngFor="let item of awards">
+                    {{ item | translate }}
                   </li>
                 </ul>
                 <br />
@@ -230,31 +209,30 @@
 <div class="px-4 mb-3">
   <div class="theme-container">
     <!-- <mat-card class="main-content-header mt-3"> -->
-      <div class="section pt-2">
-        <div class="px-3">
-          <div class="theme-container">
-            <h1 class="section-title">{{ "ABOUT.OUR_CASES" | translate }}</h1>
-            <div class="section testimonials">
-              <div class="px-3">
-                <div class="theme-container">
-                  <div class="testimonials-carousel">
-                    <div class="swiper-container" [swiper]="config">
-                      <div class="swiper-wrapper h-100">
-                        <div
-                          *ngFor="let imageNosotro of imageNosotros"
-                          class="swiper-slide"
-                        >
-                          <div class="content text-center">
-                            <img
-                              [attr.data-src]="imageNosotro.image"
-                              class="swiper-lazy"
-                            />
-                            <div class="swiper-lazy-preloader"></div>
-                          </div>
+    <div class="section pt-2">
+      <div class="px-3">
+        <div class="theme-container">
+          <h1 class="section-title">{{ "ABOUT.OUR_CASES" | translate }}</h1>
+          <div class="section testimonials">
+            <div class="px-3">
+              <div class="theme-container">
+                <div class="testimonials-carousel">
+                  <div class="swiper-container" [swiper]="config">
+                    <div class="swiper-wrapper h-100">
+                      <div
+                        *ngFor="let imageNosotro of imageNosotros"
+                        class="swiper-slide"
+                      >
+                        <div class="content text-center">
+                          <img
+                            [attr.data-src]="imageNosotro.image"
+                            class="swiper-lazy"
+                          />
+                          <div class="swiper-lazy-preloader"></div>
                         </div>
                       </div>
-                      <div class="swiper-pagination"></div>
                     </div>
+                    <div class="swiper-pagination"></div>
                   </div>
                 </div>
               </div>
@@ -262,6 +240,7 @@
           </div>
         </div>
       </div>
+    </div>
     <!-- </mat-card> -->
   </div>
 </div>
