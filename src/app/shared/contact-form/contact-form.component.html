@@ -68,7 +68,12 @@
       <!-- AQUI EL CODIGO ACTUALIZADO DE LA CASILLA DE VERIFICACIÓN -->
       <div class="privacy-checkbox">
         <label>
-          <input type="checkbox" name="agree" required />
+          <input
+            type="checkbox"
+            name="agree"
+            formControlName="agree"
+            required
+          />
           <span class="text-muted small-text ml-2"
             >By checking this box, I consent to receive marketing and customer
             care SMS from Mi Hogar en Atlanta, reply STOP to opt-out; reply HELP
@@ -86,9 +91,53 @@
         </label>
       </div>
 
-      <button mat-raised-button type="submit" class="" (click)="sendEmail()">
+      <button
+        mat-raised-button
+        type="submit"
+        class=""
+        (click)="sendEmail()"
+        [disabled]="contactForm.invalid"
+      >
         Send
       </button>
     </form>
+  </div>
+
+  <!-- Side alert: envío exitoso -->
+  <div class="side-alert side-alert--success" *ngIf="showSuccess">
+    <span class="side-alert__icon">🎉</span>
+    <div class="side-alert__body">
+      <p class="side-alert__title">
+        Thank you! Your information has been submitted successfully.
+      </p>
+      <p class="side-alert__text">We will contact you shortly</p>
+    </div>
+    <button
+      type="button"
+      class="side-alert__close"
+      aria-label="Close"
+      (click)="closePopup()"
+    >
+      &#x2715;
+    </button>
+  </div>
+
+  <!-- Side alert: error de envío -->
+  <div class="side-alert side-alert--error" *ngIf="showError">
+    <span class="side-alert__icon">⚠️</span>
+    <div class="side-alert__body">
+      <p class="side-alert__title">Oops! Your message could not be sent.</p>
+      <p class="side-alert__text">
+        Please check your connection and try again.
+      </p>
+    </div>
+    <button
+      type="button"
+      class="side-alert__close"
+      aria-label="Close"
+      (click)="closePopup()"
+    >
+      &#x2715;
+    </button>
   </div>
 </section>

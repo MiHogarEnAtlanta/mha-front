@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { EmailService } from "../services/email.service";
 
@@ -7,8 +7,11 @@ import { EmailService } from "../services/email.service";
   templateUrl: "./contact-form.component.html",
   styleUrls: ["./contact-form.component.scss"],
 })
-export class ContactFormComponent implements OnInit {
+export class ContactFormComponent implements OnInit, OnDestroy {
   contactForm: FormGroup;
+  showSuccess = false;
+  showError = false;
+  private alertTimer: any = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -21,6 +24,7 @@ export class ContactFormComponent implements OnInit {
       email: [null, [Validators.required]],
       tel: [null, [Validators.required]],
       message: [null],
+      agree: [false, [Validators.requiredTrue]],
     });
   }
 
@@ -36,9 +40,42 @@ export class ContactFormComponent implements OnInit {
         tel: tel,
         message: message,
       };
-      this.emailService.sendMessage(req).subscribe((data) => {
-        // console.log(data);
+      this.emailService.sendMessage(req).subscribe({
+        next: () => {
+          this.contactForm.reset({ agree: false });
+          this.showAlert("success");
+        },
+        error: () => {
+          // El correo no se pudo enviar: avisamos para que el usuario reintente
+          this.showAlert("error");
+        },
       });
+    }
+  }
+
+  private showAlert(type: "success" | "error") {
+    this.showSuccess = type === "success";
+    this.showError = type === "error";
+
+    if (this.alertTimer) {
+      clearTimeout(this.alertTimer);
+    }
+    // El alert lateral se oculta solo después de unos segundos
+    this.alertTimer = setTimeout(() => this.closePopup(), 6000);
+  }
+
+  closePopup() {
+    this.showSuccess = false;
+    this.showError = false;
+    if (this.alertTimer) {
+      clearTimeout(this.alertTimer);
+      this.alertTimer = null;
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.alertTimer) {
+      clearTimeout(this.alertTimer);
     }
   }
 }
