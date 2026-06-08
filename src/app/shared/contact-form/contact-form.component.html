@@ -13,11 +13,13 @@
           matInput
           #name
           formControlName="name"
-          type="name"
+          type="text"
           id="name"
           name="name"
           class=""
           placeholder="Your name"
+          autocomplete="name"
+          autocapitalize="words"
           required
         />
       </div>
@@ -33,6 +35,11 @@
           name="email"
           class=""
           placeholder="Your Email Address"
+          autocomplete="email"
+          autocapitalize="none"
+          autocorrect="off"
+          spellcheck="false"
+          inputmode="email"
           required
         />
       </div>
@@ -48,6 +55,8 @@
           name="tel"
           class=""
           placeholder="Your Phone Number"
+          autocomplete="tel"
+          inputmode="tel"
           required
         />
       </div>
@@ -102,6 +111,11 @@
     </form>
   </div>
 
+</section>
+
+<!-- Host de alertas: se monta en <body> en runtime para que el position:fixed
+     se ancle al viewport y no quede atrapado por ancestros con transform/overflow -->
+<div #alertHost>
   <!-- Side alert: envío exitoso -->
   <div class="side-alert side-alert--success" *ngIf="showSuccess">
     <span class="side-alert__icon">🎉</span>
@@ -139,4 +153,4 @@
       &#x2715;
     </button>
   </div>
-</section>
+</div>
