@@ -24,7 +24,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
       email: [null, [Validators.required]],
       tel: [null, [Validators.required]],
       message: [null],
-      agree: [false, [Validators.requiredTrue]],
+      agree: [false],
     });
   }
 
@@ -34,11 +34,13 @@ export class ContactFormComponent implements OnInit, OnDestroy {
       let email = this.contactForm.value.email;
       let tel = this.contactForm.value.tel;
       let message = this.contactForm.value.message;
+      let consent = this.contactForm.value.agree;
       let req = {
         name: name,
         email: email,
         tel: tel,
         message: message,
+        consent,
       };
       this.emailService.sendMessage(req).subscribe({
         next: () => {
