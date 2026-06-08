@@ -2542,9 +2542,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ContactFormComponent": () => (/* binding */ ContactFormComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 64762);
 /* harmony import */ var _raw_loader_contact_form_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./contact-form.component.html */ 24589);
 /* harmony import */ var _contact_form_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./contact-form.component.scss */ 33407);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 38583);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 37716);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ 3679);
 /* harmony import */ var _services_email_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/email.service */ 31413);
@@ -2554,10 +2555,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 let ContactFormComponent = class ContactFormComponent {
-    constructor(formBuilder, emailService) {
+    constructor(formBuilder, emailService, renderer, platformId) {
         this.formBuilder = formBuilder;
         this.emailService = emailService;
+        this.renderer = renderer;
+        this.platformId = platformId;
         this.showSuccess = false;
         this.showError = false;
         this.alertTimer = null;
@@ -2565,11 +2569,18 @@ let ContactFormComponent = class ContactFormComponent {
     ngOnInit() {
         this.contactForm = this.formBuilder.group({
             name: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required]],
-            email: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required]],
+            email: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.email]],
             tel: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required]],
             message: [null],
             agree: [false],
         });
+    }
+    ngAfterViewInit() {
+        // Movemos el host de alertas directo a <body>: así el position:fixed se
+        // ancla al viewport y no queda atrapado por ancestros con transform/overflow.
+        if ((0,_angular_common__WEBPACK_IMPORTED_MODULE_4__.isPlatformBrowser)(this.platformId) && this.alertHost) {
+            this.renderer.appendChild(document.body, this.alertHost.nativeElement);
+        }
     }
     sendEmail() {
         if (this.contactForm.valid) {
@@ -2618,13 +2629,22 @@ let ContactFormComponent = class ContactFormComponent {
         if (this.alertTimer) {
             clearTimeout(this.alertTimer);
         }
+        // Limpiamos el host que movimos a <body> para no dejar nodos huérfanos.
+        if (this.alertHost && this.alertHost.nativeElement.parentNode) {
+            this.renderer.removeChild(this.alertHost.nativeElement.parentNode, this.alertHost.nativeElement);
+        }
     }
 };
 ContactFormComponent.ctorParameters = () => [
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormBuilder },
-    { type: _services_email_service__WEBPACK_IMPORTED_MODULE_2__.EmailService }
+    { type: _services_email_service__WEBPACK_IMPORTED_MODULE_2__.EmailService },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Renderer2 },
+    { type: Object, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Inject, args: [_angular_core__WEBPACK_IMPORTED_MODULE_5__.PLATFORM_ID,] }] }
 ];
-ContactFormComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+ContactFormComponent.propDecorators = {
+    alertHost: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.ViewChild, args: ["alertHost",] }]
+};
+ContactFormComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: "app-contact-form",
         template: _raw_loader_contact_form_component_html__WEBPACK_IMPORTED_MODULE_0__.default,
@@ -7311,7 +7331,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<section class=\"\">\n  <div class=\"container\">\n    <form [formGroup]=\"contactForm\" class=\"\" id=\"contact\">\n      <h1 class=\"\">Contact Us</h1>\n      <h4>\n        Leave us your information so We can contact you and find together your\n        new home\n      </h4>\n\n      <div class=\"\">\n        <label for=\"name\" class=\"\">Name</label>\n        <input\n          matInput\n          #name\n          formControlName=\"name\"\n          type=\"name\"\n          id=\"name\"\n          name=\"name\"\n          class=\"\"\n          placeholder=\"Your name\"\n          required\n        />\n      </div>\n\n      <div class=\"\">\n        <label for=\"email\" class=\"\">Email</label>\n        <input\n          matInput\n          #email\n          formControlName=\"email\"\n          type=\"email\"\n          id=\"email\"\n          name=\"email\"\n          class=\"\"\n          placeholder=\"Your Email Address\"\n          required\n        />\n      </div>\n\n      <div class=\"\">\n        <label for=\"tel\" class=\"\">Phone</label>\n        <input\n          matInput\n          #tel\n          formControlName=\"tel\"\n          type=\"tel\"\n          id=\"tel\"\n          name=\"tel\"\n          class=\"\"\n          placeholder=\"Your Phone Number\"\n          required\n        />\n      </div>\n\n      <div class=\"\">\n        <label for=\"message\" class=\"\">Message</label>\n        <textarea\n          matInput\n          #message\n          formControlName=\"message\"\n          id=\"message\"\n          name=\"message\"\n          class=\"\"\n          placeholder=\"Type your message here....\"\n        ></textarea>\n      </div>\n\n      <!-- AQUI EL CODIGO ACTUALIZADO DE LA CASILLA DE VERIFICACIÓN -->\n      <div class=\"privacy-checkbox\">\n        <label>\n          <input\n            type=\"checkbox\"\n            name=\"agree\"\n            formControlName=\"agree\"\n          />\n          <span class=\"text-muted small-text ml-2\"\n            >By checking this box, I consent to receive marketing and customer\n            care SMS from Mi Hogar en Atlanta, reply STOP to opt-out; reply HELP\n            for support; Message and data rates may apply; Messaging frequency\n            may vary. Visit\n            <a class=\"primary-text\" href=\"privacy-policy\" target=\"_blank\"\n              >here</a\n            >\n            to see our privacy policy and\n            <a class=\"primary-text\" href=\"terms-conditions\" target=\"_blank\"\n              >here</a\n            >\n            for our Terms of Service.</span\n          >\n        </label>\n      </div>\n\n      <button\n        mat-raised-button\n        type=\"submit\"\n        class=\"\"\n        (click)=\"sendEmail()\"\n        [disabled]=\"contactForm.invalid\"\n      >\n        Send\n      </button>\n    </form>\n  </div>\n\n  <!-- Side alert: envío exitoso -->\n  <div class=\"side-alert side-alert--success\" *ngIf=\"showSuccess\">\n    <span class=\"side-alert__icon\">🎉</span>\n    <div class=\"side-alert__body\">\n      <p class=\"side-alert__title\">\n        Thank you! Your information has been submitted successfully.\n      </p>\n      <p class=\"side-alert__text\">We will contact you shortly</p>\n    </div>\n    <button\n      type=\"button\"\n      class=\"side-alert__close\"\n      aria-label=\"Close\"\n      (click)=\"closePopup()\"\n    >\n      &#x2715;\n    </button>\n  </div>\n\n  <!-- Side alert: error de envío -->\n  <div class=\"side-alert side-alert--error\" *ngIf=\"showError\">\n    <span class=\"side-alert__icon\">⚠️</span>\n    <div class=\"side-alert__body\">\n      <p class=\"side-alert__title\">Oops! Your message could not be sent.</p>\n      <p class=\"side-alert__text\">\n        Please check your connection and try again.\n      </p>\n    </div>\n    <button\n      type=\"button\"\n      class=\"side-alert__close\"\n      aria-label=\"Close\"\n      (click)=\"closePopup()\"\n    >\n      &#x2715;\n    </button>\n  </div>\n</section>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<section class=\"\">\n  <div class=\"container\">\n    <form [formGroup]=\"contactForm\" class=\"\" id=\"contact\">\n      <h1 class=\"\">Contact Us</h1>\n      <h4>\n        Leave us your information so We can contact you and find together your\n        new home\n      </h4>\n\n      <div class=\"\">\n        <label for=\"name\" class=\"\">Name</label>\n        <input\n          matInput\n          #name\n          formControlName=\"name\"\n          type=\"text\"\n          id=\"name\"\n          name=\"name\"\n          class=\"\"\n          placeholder=\"Your name\"\n          autocomplete=\"name\"\n          autocapitalize=\"words\"\n          required\n        />\n      </div>\n\n      <div class=\"\">\n        <label for=\"email\" class=\"\">Email</label>\n        <input\n          matInput\n          #email\n          formControlName=\"email\"\n          type=\"email\"\n          id=\"email\"\n          name=\"email\"\n          class=\"\"\n          placeholder=\"Your Email Address\"\n          autocomplete=\"email\"\n          autocapitalize=\"none\"\n          autocorrect=\"off\"\n          spellcheck=\"false\"\n          inputmode=\"email\"\n          required\n        />\n      </div>\n\n      <div class=\"\">\n        <label for=\"tel\" class=\"\">Phone</label>\n        <input\n          matInput\n          #tel\n          formControlName=\"tel\"\n          type=\"tel\"\n          id=\"tel\"\n          name=\"tel\"\n          class=\"\"\n          placeholder=\"Your Phone Number\"\n          autocomplete=\"tel\"\n          inputmode=\"tel\"\n          required\n        />\n      </div>\n\n      <div class=\"\">\n        <label for=\"message\" class=\"\">Message</label>\n        <textarea\n          matInput\n          #message\n          formControlName=\"message\"\n          id=\"message\"\n          name=\"message\"\n          class=\"\"\n          placeholder=\"Type your message here....\"\n        ></textarea>\n      </div>\n\n      <!-- AQUI EL CODIGO ACTUALIZADO DE LA CASILLA DE VERIFICACIÓN -->\n      <div class=\"privacy-checkbox\">\n        <label>\n          <input\n            type=\"checkbox\"\n            name=\"agree\"\n            formControlName=\"agree\"\n          />\n          <span class=\"text-muted small-text ml-2\"\n            >By checking this box, I consent to receive marketing and customer\n            care SMS from Mi Hogar en Atlanta, reply STOP to opt-out; reply HELP\n            for support; Message and data rates may apply; Messaging frequency\n            may vary. Visit\n            <a class=\"primary-text\" href=\"privacy-policy\" target=\"_blank\"\n              >here</a\n            >\n            to see our privacy policy and\n            <a class=\"primary-text\" href=\"terms-conditions\" target=\"_blank\"\n              >here</a\n            >\n            for our Terms of Service.</span\n          >\n        </label>\n      </div>\n\n      <button\n        mat-raised-button\n        type=\"submit\"\n        class=\"\"\n        (click)=\"sendEmail()\"\n        [disabled]=\"contactForm.invalid\"\n      >\n        Send\n      </button>\n    </form>\n  </div>\n\n</section>\n\n<!-- Host de alertas: se monta en <body> en runtime para que el position:fixed\n     se ancle al viewport y no quede atrapado por ancestros con transform/overflow -->\n<div #alertHost>\n  <!-- Side alert: envío exitoso -->\n  <div class=\"side-alert side-alert--success\" *ngIf=\"showSuccess\">\n    <span class=\"side-alert__icon\">🎉</span>\n    <div class=\"side-alert__body\">\n      <p class=\"side-alert__title\">\n        Thank you! Your information has been submitted successfully.\n      </p>\n      <p class=\"side-alert__text\">We will contact you shortly</p>\n    </div>\n    <button\n      type=\"button\"\n      class=\"side-alert__close\"\n      aria-label=\"Close\"\n      (click)=\"closePopup()\"\n    >\n      &#x2715;\n    </button>\n  </div>\n\n  <!-- Side alert: error de envío -->\n  <div class=\"side-alert side-alert--error\" *ngIf=\"showError\">\n    <span class=\"side-alert__icon\">⚠️</span>\n    <div class=\"side-alert__body\">\n      <p class=\"side-alert__title\">Oops! Your message could not be sent.</p>\n      <p class=\"side-alert__text\">\n        Please check your connection and try again.\n      </p>\n    </div>\n    <button\n      type=\"button\"\n      class=\"side-alert__close\"\n      aria-label=\"Close\"\n      (click)=\"closePopup()\"\n    >\n      &#x2715;\n    </button>\n  </div>\n</div>\n");
 
 /***/ }),
 
