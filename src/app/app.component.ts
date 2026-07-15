@@ -3,6 +3,7 @@ import { Settings, AppSettings } from './app.settings';
 import { Router, NavigationEnd } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
+import { GoogleAdsService } from './shared/services/google-ads.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,11 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
 
   public settings: Settings;
-  constructor(public appSettings:AppSettings, 
-              public router:Router, 
+  constructor(public appSettings:AppSettings,
+              public router:Router,
               @Inject(PLATFORM_ID) private platformId: Object,
-              public translate: TranslateService){
+              public translate: TranslateService,
+              private googleAds: GoogleAdsService){
     this.settings = this.appSettings.settings;
     translate.addLangs(['en','es']);
     translate.setDefaultLang('es'); 
@@ -24,14 +26,15 @@ export class AppComponent {
 
   ngAfterViewInit(){ 
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {   
+      if (event instanceof NavigationEnd) {
+        this.googleAds.trackPageView(event.urlAfterRedirects);
         setTimeout(() => {
           if (isPlatformBrowser(this.platformId)) {
             window.scrollTo(0,0);
           }
-        }); 
-      }            
-    });    
+        });
+      }
+    });
   }
 
 }

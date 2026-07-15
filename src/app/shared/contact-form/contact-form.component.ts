@@ -12,6 +12,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { EmailService } from "../services/email.service";
+import { GoogleAdsService } from "../services/google-ads.service";
 
 @Component({
   selector: "app-contact-form",
@@ -30,6 +31,7 @@ export class ContactFormComponent implements OnInit, AfterViewInit, OnDestroy {
     private formBuilder: FormBuilder,
     private emailService: EmailService,
     private renderer: Renderer2,
+    private googleAds: GoogleAdsService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
@@ -68,6 +70,7 @@ export class ContactFormComponent implements OnInit, AfterViewInit, OnDestroy {
       this.emailService.sendMessage(req).subscribe({
         next: () => {
           this.contactForm.reset({ agree: false });
+          this.googleAds.trackContactConversion();
           this.showAlert("success");
         },
         error: () => {
