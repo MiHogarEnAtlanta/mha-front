@@ -33,14 +33,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppComponent": () => (/* binding */ AppComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 64762);
 /* harmony import */ var _raw_loader_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./app.component.html */ 91106);
 /* harmony import */ var _app_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.scss */ 43069);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 37716);
 /* harmony import */ var _app_settings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.settings */ 1182);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 39895);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 38583);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngx-translate/core */ 29790);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 39895);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 38583);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngx-translate/core */ 29790);
+/* harmony import */ var _shared_services_google_ads_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared/services/google-ads.service */ 37730);
+
 
 
 
@@ -50,11 +52,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor(appSettings, router, platformId, translate) {
+    constructor(appSettings, router, platformId, translate, googleAds) {
         this.appSettings = appSettings;
         this.router = router;
         this.platformId = platformId;
         this.translate = translate;
+        this.googleAds = googleAds;
         this.settings = this.appSettings.settings;
         translate.addLangs(['en', 'es']);
         translate.setDefaultLang('es');
@@ -62,9 +65,10 @@ let AppComponent = class AppComponent {
     }
     ngAfterViewInit() {
         this.router.events.subscribe(event => {
-            if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_3__.NavigationEnd) {
+            if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_4__.NavigationEnd) {
+                this.googleAds.trackPageView(event.urlAfterRedirects);
                 setTimeout(() => {
-                    if ((0,_angular_common__WEBPACK_IMPORTED_MODULE_4__.isPlatformBrowser)(this.platformId)) {
+                    if ((0,_angular_common__WEBPACK_IMPORTED_MODULE_5__.isPlatformBrowser)(this.platformId)) {
                         window.scrollTo(0, 0);
                     }
                 });
@@ -74,12 +78,13 @@ let AppComponent = class AppComponent {
 };
 AppComponent.ctorParameters = () => [
     { type: _app_settings__WEBPACK_IMPORTED_MODULE_2__.AppSettings },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__.Router },
-    { type: Object, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Inject, args: [_angular_core__WEBPACK_IMPORTED_MODULE_5__.PLATFORM_ID,] }] },
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__.TranslateService }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router },
+    { type: Object, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Inject, args: [_angular_core__WEBPACK_IMPORTED_MODULE_6__.PLATFORM_ID,] }] },
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__.TranslateService },
+    { type: _shared_services_google_ads_service__WEBPACK_IMPORTED_MODULE_3__.GoogleAdsService }
 ];
-AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-root',
         template: _raw_loader_app_component_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_app_component_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -2542,13 +2547,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ContactFormComponent": () => (/* binding */ ContactFormComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 64762);
 /* harmony import */ var _raw_loader_contact_form_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./contact-form.component.html */ 24589);
 /* harmony import */ var _contact_form_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./contact-form.component.scss */ 33407);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 38583);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ 3679);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 38583);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ 3679);
 /* harmony import */ var _services_email_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/email.service */ 31413);
+/* harmony import */ var _services_google_ads_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/google-ads.service */ 37730);
+
 
 
 
@@ -2557,10 +2564,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ContactFormComponent = class ContactFormComponent {
-    constructor(formBuilder, emailService, renderer, platformId) {
+    constructor(formBuilder, emailService, renderer, googleAds, platformId) {
         this.formBuilder = formBuilder;
         this.emailService = emailService;
         this.renderer = renderer;
+        this.googleAds = googleAds;
         this.platformId = platformId;
         this.showSuccess = false;
         this.showError = false;
@@ -2568,9 +2576,9 @@ let ContactFormComponent = class ContactFormComponent {
     }
     ngOnInit() {
         this.contactForm = this.formBuilder.group({
-            name: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required]],
-            email: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.email]],
-            tel: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required]],
+            name: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_4__.Validators.required]],
+            email: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_4__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__.Validators.email]],
+            tel: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_4__.Validators.required]],
             message: [null],
             agree: [false],
         });
@@ -2578,7 +2586,7 @@ let ContactFormComponent = class ContactFormComponent {
     ngAfterViewInit() {
         // Movemos el host de alertas directo a <body>: así el position:fixed se
         // ancla al viewport y no queda atrapado por ancestros con transform/overflow.
-        if ((0,_angular_common__WEBPACK_IMPORTED_MODULE_4__.isPlatformBrowser)(this.platformId) && this.alertHost) {
+        if ((0,_angular_common__WEBPACK_IMPORTED_MODULE_5__.isPlatformBrowser)(this.platformId) && this.alertHost) {
             this.renderer.appendChild(document.body, this.alertHost.nativeElement);
         }
     }
@@ -2599,6 +2607,7 @@ let ContactFormComponent = class ContactFormComponent {
             this.emailService.sendMessage(req).subscribe({
                 next: () => {
                     this.contactForm.reset({ agree: false });
+                    this.googleAds.trackContactConversion();
                     this.showAlert("success");
                 },
                 error: () => {
@@ -2636,16 +2645,17 @@ let ContactFormComponent = class ContactFormComponent {
     }
 };
 ContactFormComponent.ctorParameters = () => [
-    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormBuilder },
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormBuilder },
     { type: _services_email_service__WEBPACK_IMPORTED_MODULE_2__.EmailService },
-    { type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Renderer2 },
-    { type: Object, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Inject, args: [_angular_core__WEBPACK_IMPORTED_MODULE_5__.PLATFORM_ID,] }] }
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Renderer2 },
+    { type: _services_google_ads_service__WEBPACK_IMPORTED_MODULE_3__.GoogleAdsService },
+    { type: Object, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Inject, args: [_angular_core__WEBPACK_IMPORTED_MODULE_6__.PLATFORM_ID,] }] }
 ];
 ContactFormComponent.propDecorators = {
-    alertHost: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.ViewChild, args: ["alertHost",] }]
+    alertHost: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.ViewChild, args: ["alertHost",] }]
 };
-ContactFormComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+ContactFormComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: "app-contact-form",
         template: _raw_loader_contact_form_component_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_contact_form_component_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -4800,6 +4810,68 @@ FmlsService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
         providedIn: "root",
     })
 ], FmlsService);
+
+
+
+/***/ }),
+
+/***/ 37730:
+/*!*******************************************************!*\
+  !*** ./src/app/shared/services/google-ads.service.ts ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GoogleAdsService": () => (/* binding */ GoogleAdsService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ 38583);
+
+
+
+let GoogleAdsService = class GoogleAdsService {
+    constructor(platformId) {
+        this.platformId = platformId;
+        // ID de la cuenta de Google Ads (el mismo de index.html).
+        this.adsId = "AW-18322825978";
+        // Etiqueta de conversión "envío de formulario de contacto".
+        // PENDIENTE: cuando el equipo de Google Ads cree la conversión, reemplaza
+        // XXXXXXXXXXX por el "Send to" que entrega Google Ads
+        // (formato AW-18322825978/XXXXXXXXXXX). Mientras siga con el placeholder,
+        // trackContactConversion() no dispara nada.
+        this.contactConversionLabel = "AW-18322825978/XXXXXXXXXXX";
+    }
+    get enabled() {
+        return (0,_angular_common__WEBPACK_IMPORTED_MODULE_0__.isPlatformBrowser)(this.platformId) && typeof gtag === "function";
+    }
+    /** Registra una vista de página en la SPA (Angular no recarga entre rutas). */
+    trackPageView(path) {
+        if (!this.enabled) {
+            return;
+        }
+        gtag("config", this.adsId, { page_path: path });
+    }
+    /** Dispara la conversión al enviarse el formulario de contacto. */
+    trackContactConversion() {
+        // Aún no hay etiqueta real: no disparamos para no enviar eventos vacíos.
+        if (this.contactConversionLabel.endsWith("/XXXXXXXXXXX")) {
+            return;
+        }
+        if (!this.enabled) {
+            return;
+        }
+        gtag("event", "conversion", { send_to: this.contactConversionLabel });
+    }
+};
+GoogleAdsService.ctorParameters = () => [
+    { type: Object, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Inject, args: [_angular_core__WEBPACK_IMPORTED_MODULE_1__.PLATFORM_ID,] }] }
+];
+GoogleAdsService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({ providedIn: "root" })
+], GoogleAdsService);
 
 
 
