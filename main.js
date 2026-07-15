@@ -33,15 +33,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppComponent": () => (/* binding */ AppComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 64762);
 /* harmony import */ var _raw_loader_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./app.component.html */ 91106);
 /* harmony import */ var _app_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.scss */ 43069);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 37716);
 /* harmony import */ var _app_settings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.settings */ 1182);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 39895);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 38583);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngx-translate/core */ 29790);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 39895);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 38583);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ 29790);
 /* harmony import */ var _shared_services_google_ads_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared/services/google-ads.service */ 37730);
+/* harmony import */ var _shared_services_chat_widget_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shared/services/chat-widget.service */ 62267);
+
 
 
 
@@ -52,12 +54,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor(appSettings, router, platformId, translate, googleAds) {
+    constructor(appSettings, router, platformId, translate, googleAds, chatWidget) {
         this.appSettings = appSettings;
         this.router = router;
         this.platformId = platformId;
         this.translate = translate;
         this.googleAds = googleAds;
+        this.chatWidget = chatWidget;
+        // Rutas con formulario de teléfono/SMS: el chat widget NO debe cargar ahí
+        // (LeadConnector rechaza que convivan en la misma página). El formulario
+        // ahora vive solo en /contact.
+        this.chatWidgetExcludedRoutes = ['/contact'];
         this.settings = this.appSettings.settings;
         translate.addLangs(['en', 'es']);
         translate.setDefaultLang('es');
@@ -65,26 +72,38 @@ let AppComponent = class AppComponent {
     }
     ngAfterViewInit() {
         this.router.events.subscribe(event => {
-            if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_4__.NavigationEnd) {
+            if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_5__.NavigationEnd) {
                 this.googleAds.trackPageView(event.urlAfterRedirects);
+                this.updateChatWidget(event.urlAfterRedirects);
                 setTimeout(() => {
-                    if ((0,_angular_common__WEBPACK_IMPORTED_MODULE_5__.isPlatformBrowser)(this.platformId)) {
+                    if ((0,_angular_common__WEBPACK_IMPORTED_MODULE_6__.isPlatformBrowser)(this.platformId)) {
                         window.scrollTo(0, 0);
                     }
                 });
             }
         });
     }
+    // Muestra el chat widget solo en rutas sin formulario de teléfono/SMS.
+    updateChatWidget(url) {
+        const path = url.split('?')[0].split('#')[0];
+        if (this.chatWidgetExcludedRoutes.indexOf(path) !== -1) {
+            this.chatWidget.remove();
+        }
+        else {
+            this.chatWidget.load();
+        }
+    }
 };
 AppComponent.ctorParameters = () => [
     { type: _app_settings__WEBPACK_IMPORTED_MODULE_2__.AppSettings },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router },
-    { type: Object, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Inject, args: [_angular_core__WEBPACK_IMPORTED_MODULE_6__.PLATFORM_ID,] }] },
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__.TranslateService },
-    { type: _shared_services_google_ads_service__WEBPACK_IMPORTED_MODULE_3__.GoogleAdsService }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
+    { type: Object, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Inject, args: [_angular_core__WEBPACK_IMPORTED_MODULE_7__.PLATFORM_ID,] }] },
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__.TranslateService },
+    { type: _shared_services_google_ads_service__WEBPACK_IMPORTED_MODULE_3__.GoogleAdsService },
+    { type: _shared_services_chat_widget_service__WEBPACK_IMPORTED_MODULE_4__.ChatWidgetService }
 ];
-AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-root',
         template: _raw_loader_app_component_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_app_component_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -4235,6 +4254,85 @@ RatingComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
 
 /***/ }),
 
+/***/ 62267:
+/*!********************************************************!*\
+  !*** ./src/app/shared/services/chat-widget.service.ts ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ChatWidgetService": () => (/* binding */ ChatWidgetService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ 38583);
+
+
+
+/**
+ * Carga el chat widget de LeadConnector de forma condicional por ruta.
+ *
+ * Motivo: el chequeo de compliance de LeadConnector rechaza que el widget
+ * conviva en la misma página con un formulario que capta teléfono/SMS. Por eso
+ * NO lo dejamos en index.html (se cargaría en todas las páginas, incluidas las
+ * que tienen el formulario de contacto). En su lugar lo inyectamos solo en las
+ * rutas permitidas. Como el sitio usa SSR y este servicio corre únicamente en
+ * el navegador, el HTML que el servidor entrega para home/contacto —lo que
+ * escanea compliance— nunca incluye el widget.
+ */
+let ChatWidgetService = class ChatWidgetService {
+    constructor(platformId) {
+        this.platformId = platformId;
+        this.loaderId = "lc-chat-widget-loader";
+    }
+    /** Inyecta el loader del widget si aún no está presente. */
+    load() {
+        if (!(0,_angular_common__WEBPACK_IMPORTED_MODULE_0__.isPlatformBrowser)(this.platformId)) {
+            return;
+        }
+        if (document.getElementById(this.loaderId)) {
+            return; // ya cargado
+        }
+        const script = document.createElement("script");
+        script.id = this.loaderId;
+        script.src = "https://widgets.leadconnectorhq.com/loader.js";
+        script.setAttribute("data-resources-url", "https://widgets.leadconnectorhq.com/chat-widget/loader.js");
+        script.setAttribute("data-widget-id", "6a5625cac6e06ac8e89f6b9b");
+        script.setAttribute("data-source", "WEB_USER");
+        document.body.appendChild(script);
+    }
+    /** Retira el widget y su loader (para rutas donde no debe aparecer). */
+    remove() {
+        if (!(0,_angular_common__WEBPACK_IMPORTED_MODULE_0__.isPlatformBrowser)(this.platformId)) {
+            return;
+        }
+        const loader = document.getElementById(this.loaderId);
+        if (loader && loader.parentNode) {
+            loader.parentNode.removeChild(loader);
+        }
+        // El loader inyecta sus propios nodos (iframe/contenedor). Los quitamos
+        // para que el widget desaparezca al navegar a una ruta no permitida.
+        const injected = document.querySelectorAll('iframe[src*="leadconnector"], [id*="lc_"], chat-widget');
+        injected.forEach((el) => {
+            if (el.parentNode) {
+                el.parentNode.removeChild(el);
+            }
+        });
+    }
+};
+ChatWidgetService.ctorParameters = () => [
+    { type: Object, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Inject, args: [_angular_core__WEBPACK_IMPORTED_MODULE_1__.PLATFORM_ID,] }] }
+];
+ChatWidgetService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({ providedIn: "root" })
+], ChatWidgetService);
+
+
+
+/***/ }),
+
 /***/ 88925:
 /*!*************************************************!*\
   !*** ./src/app/shared/services/chat.service.ts ***!
@@ -7688,7 +7786,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<div class=\"container\">\n  <div class=\"rounded overflow-hidden shadow\">\n    <youtube-player\n      videoId=\"mm09KpWhYwE\"\n      suggestedQuality=\"highres\"\n      [height]=\"400\"\n      [width]=\"600\"\n      fxLayoutAlign=\"center\"\n    ></youtube-player>\n  </div>\n  <app-contact-form></app-contact-form>\n</div>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<div class=\"container\">\n  <div class=\"rounded overflow-hidden shadow\">\n    <youtube-player\n      videoId=\"mm09KpWhYwE\"\n      suggestedQuality=\"highres\"\n      [height]=\"400\"\n      [width]=\"600\"\n      fxLayoutAlign=\"center\"\n    ></youtube-player>\n  </div>\n</div>\n");
 
 /***/ }),
 
