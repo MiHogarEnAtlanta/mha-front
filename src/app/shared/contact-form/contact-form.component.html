@@ -74,8 +74,10 @@
         ></textarea>
       </div>
 
-      <!-- AQUI EL CODIGO ACTUALIZADO DE LA CASILLA DE VERIFICACIÓN -->
-      <div class="privacy-checkbox">
+      <!-- Casilla de consentimiento SMS oculta temporalmente mientras el equipo
+           completa el registro/aplicación A2P. Cambiar *ngIf a "true" (o
+           quitarlo) para reactivarla. -->
+      <div class="privacy-checkbox" *ngIf="false">
         <label>
           <input
             type="checkbox"
