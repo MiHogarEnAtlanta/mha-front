@@ -1,0 +1,32 @@
+// Sección "Conoce a nuestra líder": imagen de fondo con overlay claro que la
+// separa visualmente de las secciones planas de arriba/abajo. Las tarjetas
+// blancas resaltan sobre el fondo.
+.leader-section {
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 3.5rem 0;
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.78);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 959px) {
+  .leader-section {
+    padding: 2rem 0;
+    background-attachment: scroll;
+  }
+}

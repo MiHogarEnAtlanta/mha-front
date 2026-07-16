@@ -1,0 +1,21 @@
+<div class="section success-grid px-3">
+  <div class="theme-container">
+    <h1 class="section-title">{{ "ABOUT.OUR_CASES" | translate }}</h1>
+    <div fxLayout="row wrap" fxLayoutAlign="center stretch">
+      <div
+        *ngFor="let caseItem of cases"
+        fxFlex="100"
+        fxFlex.gt-xs="50"
+        fxFlex.gt-sm="33.3"
+        class="p-2"
+      >
+        <div class="success-grid__card shadow rounded overflow-hidden">
+          <img
+            [src]="caseItem.image"
+            alt="Caso de éxito - Mi Hogar en Atlanta"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

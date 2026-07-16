@@ -26,13 +26,14 @@ export const routes: Routes = [
         loadChildren: () =>
           import("./pages/contact/contact.module").then((m) => m.ContactModule),
       },
-      {
-        path: "properties",
-        loadChildren: () =>
-          import("./pages/properties/properties.module").then(
-            (m) => m.PropertiesModule
-          ),
-      },
+      // Ruta de propiedades deshabilitada mientras la llave FMLS está inactiva.
+      // {
+      //   path: "properties",
+      //   loadChildren: () =>
+      //     import("./pages/properties/properties.module").then(
+      //       (m) => m.PropertiesModule
+      //     ),
+      // },
       // { path: 'agents', loadChildren: () => import('./pages/agents/agents.module').then(m => m.AgentsModule) },
       {
         path: "compare",

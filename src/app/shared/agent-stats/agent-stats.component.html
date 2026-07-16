@@ -1,0 +1,15 @@
+<div
+  class="agent-stats"
+  fxLayout="row wrap"
+  fxLayoutAlign="space-around center"
+>
+  <div
+    *ngFor="let stat of stats"
+    class="agent-stats__item"
+    fxFlex="50"
+    fxFlex.gt-xs="25"
+  >
+    <span class="agent-stats__number primary-color">{{ stat.number }}</span>
+    <span class="agent-stats__label">{{ stat.label }}</span>
+  </div>
+</div>

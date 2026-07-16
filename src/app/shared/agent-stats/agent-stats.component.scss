@@ -1,0 +1,31 @@
+.agent-stats {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  padding: 1.75rem 1rem;
+
+  &__item {
+    text-align: center;
+    padding: 0.75rem;
+  }
+
+  &__number {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  &__label {
+    display: block;
+    margin-top: 0.4rem;
+    color: #6b6b6b;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 599px) {
+  .agent-stats__number {
+    font-size: 1.8rem;
+  }
+}

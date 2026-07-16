@@ -64,7 +64,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getSlides();
     this.getLocations();
-    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);
+    // Listado FMLS retirado de la home (llave de integración inactiva).
+    // Reactivar junto con el bloque FMLS del template cuando se renueve.
+    // this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);
     // this.getFeaturedProperties();
 
     const tag = document.createElement("script");

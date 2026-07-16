@@ -29,70 +29,37 @@
         [fullscreen]="true">
     </app-header-video>
             
-<app-videocontact></app-videocontact>
-
-<div class="px-3">
+<!-- Sección "Conoce a nuestra líder": video + tarjeta de stats a un lado y las
+     tarjetas de Carmela al otro. Reemplaza al buscador/listado FMLS (inactivo).
+     El markup FMLS original está en el historial de git para restaurarlo. -->
+<div
+  class="leader-section"
+  style="background-image: url('assets/images/others/homepage.jpg')"
+>
+  <div class="leader-section__overlay"></div>
+  <div class="leader-section__content px-3">
     <div class="theme-container">
-                
-        <mat-card class="main-content-header">
-
-            <app-properties-search 
-                [variant]="settings.searchPanelVariant"
-                [searchOnBtnClick]="settings.searchOnBtnClick"
-                [removedSearchField]="removedSearchField" 
-                (onSearchChange)="searchChanged($event)"
-                (onSearchClick)="searchClicked()">
-            </app-properties-search>
-            
-        </mat-card>  
-    
-    </div>
-
-    
-    <div class="theme-container"> 
-        
-        <div fxLayout="row wrap" class="properties-wrapper">
-            
-            <div fxFlex="100" fxLayoutAlign="start start" class="p-2"> 
-                <mat-chip-list [ngClass]="(settings.rtl) ? 'ml-2' : 'mr-2'">
-                    <!-- <mat-chip selected disableRipple="true" color="warn" class="uppercase ws-nowrap">
-                        {{ pagination?.total }} Encontrado
-                    </mat-chip>  -->
-                </mat-chip-list>
-                <app-properties-search-results-filters 
-                    [searchFields]="searchFields" 
-                    (onRemoveSearchField)="removeSearchField($event)">
-                </app-properties-search-results-filters>                 
-            </div>
-            <div fxFlex="100" class="p-2">                
-                <app-properties-toolbar [isHomePage]="true" 
-                                        (onChangeCount)="changeCount($event)"
-                                        (onChangeSorting)="changeSorting($event)"
-                                        (onChangeViewType)="changeViewType($event)"></app-properties-toolbar>
-            </div>
-            <div *ngFor="let property of properties" [fxFlex]="(viewType=='grid') ? viewCol : 100" class="item">                         
-                <app-property-item [property]="property" [viewType]="viewType" [viewColChanged]="viewCol"></app-property-item>
-            </div>
-            <div *ngIf="properties?.length" fxFlex="100" fxLayoutAlign="center center" class="p-2 mt-2">                
-                <app-load-more [step]="2"></app-load-more> 
-            </div>
-
-            <div *ngIf="properties?.length == 0" fxFlex="100" fxLayoutAlign="center center" [style.min-height.px]="200">                
-                <mat-spinner *ngIf="!message"></mat-spinner>
-                <mat-chip-list *ngIf="message">
-                    <mat-chip selected disableRipple="true" color="warn" class="uppercase ws-nowrap">
-                        {{message}}
-                    </mat-chip> 
-                </mat-chip-list> 
-            </div>
-
+      <h1 class="section-title">{{ "AGENTS.A_TITLE" | translate }}</h1>
+      <div fxLayout="row wrap" fxLayoutAlign="space-around start">
+        <div fxFlex="100" fxFlex.gt-sm="45" class="p-2">
+          <app-videocontact></app-videocontact>
+          <div class="mt-3">
+            <app-agent-stats></app-agent-stats>
+          </div>
         </div>
-
-        
+        <div fxFlex="100" fxFlex.gt-sm="50" class="p-2">
+          <app-our-agents></app-our-agents>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
+<!-- Casos de éxito como grid de cards (identidad propia; el carrusel queda
+     solo en /nosotros) -->
+<app-success-cases-grid></app-success-cases-grid>
 
+<app-testimonials></app-testimonials>
 
 <!-- <app-mission></app-mission> -->
 
@@ -101,10 +68,6 @@
 <!-- <app-hot-offer-today [propertyId]="4"></app-hot-offer-today>  -->
 
 <!-- <app-featured-properties [properties]="featuredProperties"></app-featured-properties> -->
-
-<app-our-agents></app-our-agents>
-
-<app-testimonials></app-testimonials> 
 
 <!-- <youtube-player videoId="iZDXj8PjoiA" 
 suggestedQuality="highres"

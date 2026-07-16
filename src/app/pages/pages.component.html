@@ -39,11 +39,10 @@
             <mat-icon>arrow_upward</mat-icon>
         </div>
 
-        <jjva-ngx-whatsapp-button [ngx_whatsapp_phone]="phone" [ngx_whatsapp_text]="" style="position: fixed !important; z-index: 99999;"></jjva-ngx-whatsapp-button>
+        <!-- Botones flotantes de WhatsApp y del chat propio ("bot") removidos:
+             ahora usamos el chat widget de LeadConnector como único canal. -->
 
-        <app-chat></app-chat>
-
-    <!-- </mat-sidenav-content> 
+    <!-- </mat-sidenav-content>
     
     <mat-sidenav #options position="end" class="options" autoFocus="false">
         <div fxLayout="row" fxLayoutAlign="space-between center" class="op-header mat-elevation-z1">

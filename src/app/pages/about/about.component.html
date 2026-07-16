@@ -206,44 +206,8 @@
   </div>
 </div>
 
-<div class="px-4 mb-3">
-  <div class="theme-container">
-    <!-- <mat-card class="main-content-header mt-3"> -->
-    <div class="section pt-2">
-      <div class="px-3">
-        <div class="theme-container">
-          <h1 class="section-title">{{ "ABOUT.OUR_CASES" | translate }}</h1>
-          <div class="section testimonials">
-            <div class="px-3">
-              <div class="theme-container">
-                <div class="testimonials-carousel">
-                  <div class="swiper-container" [swiper]="config">
-                    <div class="swiper-wrapper h-100">
-                      <div
-                        *ngFor="let imageNosotro of imageNosotros"
-                        class="swiper-slide"
-                      >
-                        <div class="content text-center">
-                          <img
-                            [attr.data-src]="imageNosotro.image"
-                            class="swiper-lazy"
-                          />
-                          <div class="swiper-lazy-preloader"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- </mat-card> -->
-  </div>
-</div>
+<!-- Casos de éxito: componente compartido (mismo que la home) -->
+<app-success-cases></app-success-cases>
 <!-- <app-mission></app-mission> -->
 
 <!-- <app-our-services></app-our-services> -->

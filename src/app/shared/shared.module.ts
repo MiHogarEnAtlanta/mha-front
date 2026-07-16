@@ -69,6 +69,9 @@ import { TestimonialsComponent } from "./testimonials/testimonials.component";
 import { OurAgentsComponent } from "./our-agents/our-agents.component";
 import { MissionComponent } from "./mission/mission.component";
 import { OurServicesComponent } from "./our-services/our-services.component";
+import { AgentStatsComponent } from "./agent-stats/agent-stats.component";
+import { SuccessCasesComponent } from "./success-cases/success-cases.component";
+import { SuccessCasesGridComponent } from "./success-cases-grid/success-cases-grid.component";
 import { LogoComponent } from "./logo/logo.component";
 import { HeaderMapComponent } from "./header-map/header-map.component";
 import { HeaderVideoComponent } from "./header-video/header-video.component";
@@ -194,6 +197,9 @@ import { NgxYoutubePlayerModule } from "ngx-youtube-player";
     OurAgentsComponent,
     MissionComponent,
     OurServicesComponent,
+    AgentStatsComponent,
+    SuccessCasesComponent,
+    SuccessCasesGridComponent,
     HeaderMapComponent,
     HeaderVideoComponent,
     ConfirmDialogComponent,
@@ -223,6 +229,9 @@ import { NgxYoutubePlayerModule } from "ngx-youtube-player";
     OurAgentsComponent,
     MissionComponent,
     OurServicesComponent,
+    AgentStatsComponent,
+    SuccessCasesComponent,
+    SuccessCasesGridComponent,
     HeaderMapComponent,
     HeaderVideoComponent,
     ConfirmDialogComponent,

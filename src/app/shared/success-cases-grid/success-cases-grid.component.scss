@@ -1,0 +1,26 @@
+.success-grid {
+  padding: 2.5rem 0;
+
+  &__card {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%; // tarjetas uniformes 4:3
+    background: #fff;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.35s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+}
